@@ -1,23 +1,28 @@
 <app-header />
 
 <main class="container">
-  <form action="" class="form">
+  <form action="" class="form" [formGroup]="loginForm">
     <h2 class="form__title">Inicio de sessión</h2>
 
     <div class="form__group">
-      <label for="usuario" class="form__label">Usuario:</label>
-      <input type="text" name="usuario" id="usuario" class="form__input" />
-    </div>
-    <div class="form__group">
-      <label for="contraseña" class="form__label">Contraseña:</label>
+      <label for="user" class="form__label">Usuario:</label>
       <input
-        type="password"
-        name="contraseña"
-        id="contraseña"
+        type="email"
+        formControlName="user"
+        id="user"
         class="form__input"
       />
     </div>
-    <button class="form__button">Validar datos</button>
+    <div class="form__group">
+      <label for="password" class="form__label">Contraseña:</label>
+      <input
+        type="password"
+        formControlName="password"
+        id="password"
+        class="form__input"
+      />
+    </div>
+    <button class="form__button" (click)="onLogin()">Validar datos</button>
     <a href="/" class="form__link">¿Olvidaste tu contraseña?</a>
   </form>
 </main>
