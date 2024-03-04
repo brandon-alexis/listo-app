@@ -7,11 +7,22 @@
   gap: 1.2rem;
   padding: 1.5rem 0;
 
+  @media (min-width: 900px) {
+    flex-direction: row;
+    background-color: #0e3960;
+    padding: 0.2rem;
+    justify-content: space-around;
+  }
+
   &__links {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 1.5rem;
+    column-gap: 1.5rem;
+
+    @media (min-width: 900px) {
+      column-gap: 0.5rem;
+    }
   }
 
   &__link {
@@ -22,6 +33,10 @@
     padding: 0.8rem;
     border-radius: 50%;
     transition: 250ms linear;
+
+    @media (min-width: 900px) {
+      background-color: transparent;
+    }
 
     &:hover {
       background-color: var(--color-secondary);
@@ -37,6 +52,10 @@
     justify-content: center;
     align-items: center;
     gap: 10px;
+
+    @media (min-width: 900px) {
+      display: none;
+    }
   }
 
   &__text {
@@ -52,5 +71,39 @@
     height: auto;
     padding: 0.3rem;
     border-radius: 10px;
+  }
+
+  &__contacts {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 1rem;
+
+    .footer__contact {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      position: relative;
+
+      &:first-child::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: -0.5rem;
+        width: 2px;
+        height: 100%;
+        background-color: var(--color-primary);
+      }
+
+      &-icon {
+        width: 30px;
+        height: auto;
+      }
+
+      &-text {
+        color: var(--color-primary);
+      }
+    }
   }
 }
