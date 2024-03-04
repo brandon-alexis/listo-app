@@ -1,0 +1,52 @@
+@if (images && images.length > 0) {
+<div class="carrousel__container">
+  @for (image of images; track $index) {
+  <img
+    [src]="image.src"
+    [alt]="image.alt"
+    class="carrousel__image carrousel__image--fade"
+    [ngClass]="{ 'carrousel__image--active': selectedIndex === $index }"
+  />
+  }
+  <button
+    class="carrousel__button carrousel__button--left"
+    (click)="onPrevImage()"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="icon icon-tabler icon-tabler-chevron-left"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      stroke-width="2"
+      stroke="#ffffff"
+      fill="none"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M15 6l-6 6l6 6" />
+    </svg>
+  </button>
+  <button
+    class="carrousel__button carrousel__button--right"
+    (click)="onNextImage()"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="icon icon-tabler icon-tabler-chevron-right"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      stroke-width="2"
+      stroke="#ffffff"
+      fill="none"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M9 6l6 6l-6 6" />
+    </svg>
+  </button>
+</div>
+}
