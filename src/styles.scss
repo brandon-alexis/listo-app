@@ -2,11 +2,15 @@
 
 $color-primary: #ffffff;
 $color-secondary: #296595;
+$color-success: #42a948;
+$color-error: #a94442;
 $font: "Roboto", sans-serif;
 
 :root {
   --color-primary: #{$color-primary};
   --color-secondary: #{$color-secondary};
+  --color-success: #{$color-success};
+  --color-error: #{$color-error};
 }
 
 * {
@@ -33,4 +37,13 @@ a {
 ul,
 ol {
   list-style: none;
+}
+
+/* Angular form */
+.ng-valid:not(form).ng-touched {
+  border-bottom: 2px solid var(--color-success) !important;
+}
+
+.ng-invalid:not(form).ng-touched {
+  border-bottom: 2px solid var(--color-error) !important;
 }
