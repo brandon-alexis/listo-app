@@ -65,18 +65,24 @@ export class LoginComponent {
 
   onLogin() {
     if (this.loginForm.valid) {
-      this.loginService
-        .fetchLogin(this.loginForm.contains)
-        .subscribe((res: any) => {
+      this.loginService.fetchLogin(this.loginForm.contains).subscribe(
+        (res: any) => {
           if (res.status !== 200) {
             this.isModalActive = true;
           }
 
           localStorage.setItem('token', res.payload.token);
+          localStorage.setItem('data', res.payload);
           this.loginService.loginEvent.emit(res.payload);
           this.router.navigateByUrl('/dashboard', { state: res.payload });
           this.loginForm.reset();
-        });
+        },
+        (error) => {
+          if (error) {
+            this.isModalActive = true;
+          }
+        }
+      );
     } else {
       this.loginForm.markAllAsTouched();
       this.isModalActive = true;

@@ -13,11 +13,9 @@ export class HomeComponent implements OnInit {
   user: T_Login;
 
   constructor(private loginService: LoginService) {
-    this.user = {
-      nombre: 'default',
-      apellido: 'default',
-      login: 'default',
-    };
+    // const localUser = localStorage.getItem('data')
+
+    this.user = { nombre: 'default', apellido: 'default', login: 'default' };
   }
 
   ngOnInit(): void {
