@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 import { CarrouselComponent } from '../../carrousel/carrousel.component';
 import { T_CarrouselImage } from '../../types/Carrousel';
 import { LoginService } from '../../services/login.service';
-import { CommonModule } from '@angular/common';
+import { ModalComponent } from '../../modal/modal.component';
 
 @Component({
   selector: 'app-login',
@@ -24,6 +24,7 @@ import { CommonModule } from '@angular/common';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    ModalComponent,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',

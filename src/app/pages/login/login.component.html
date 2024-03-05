@@ -1,14 +1,11 @@
 <app-header />
 
-<div
-  [className]="isModalActive ? 'modal__container--active' : 'modal__container'"
-  (click)="isModalActive = false"
->
-  <div [className]="isModalActive ? 'modal--active' : 'modal'">
-    <span class="modal__title">Modal title</span>
-    <p class="modal__text">This is a modal description</p>
-  </div>
-</div>
+<app-modal
+  [isActive]="isModalActive"
+  (modalChange)="isModalActive = false"
+  title="Ocurrio un error al enviar los datos"
+  text="Verifica que todos los campos del formulario esten correctamente llenados"
+/>
 
 <main class="container">
   <form class="form" [formGroup]="loginForm">
