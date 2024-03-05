@@ -7,7 +7,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { CarrouselComponent } from '../../carrousel/carrousel.component';
 import { T_CarrouselImage } from '../../types/Carrousel';
@@ -22,7 +21,6 @@ import { ModalComponent } from '../../modal/modal.component';
     FooterComponent,
     CarrouselComponent,
     FormsModule,
-    HttpClientModule,
     ReactiveFormsModule,
     ModalComponent,
   ],
@@ -60,7 +58,6 @@ export class LoginComponent {
   isPasswordHide = true;
 
   constructor(
-    private http: HttpClient,
     private router: Router,
     private formBuilder: FormBuilder,
     private loginService: LoginService
@@ -68,14 +65,11 @@ export class LoginComponent {
 
   onLogin() {
     if (this.loginForm.valid) {
-      this.http
-        .post(
-          'https://apimocha.com/loginplaytech/exitologin',
-          this.loginForm.contains
-        )
+      this.loginService
+        .fetchLogin(this.loginForm.contains)
         .subscribe((res: any) => {
           if (res.status !== 200) {
-            console.error('There was a error making the request');
+            this.isModalActive = true;
           }
 
           localStorage.setItem('token', res.payload.token);
