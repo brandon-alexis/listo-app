@@ -1,7 +1,17 @@
 <app-header />
 
+<div
+  [className]="isModalActive ? 'modal__container--active' : 'modal__container'"
+  (click)="isModalActive = false"
+>
+  <div [className]="isModalActive ? 'modal--active' : 'modal'">
+    <span class="modal__title">Modal title</span>
+    <p class="modal__text">This is a modal description</p>
+  </div>
+</div>
+
 <main class="container">
-  <form action="" class="form" [formGroup]="loginForm">
+  <form class="form" [formGroup]="loginForm">
     <h2 class="form__title">Inicio de sessión</h2>
 
     <div class="form__group">
@@ -11,8 +21,23 @@
         formControlName="user"
         id="user"
         class="form__input"
+        placeholder="Ingresa tu usuario"
       />
+      @if(user.invalid && (user.dirty || user.touched)) {
+      <div>
+        @if (user.errors?.['required']) {
+        <span class="form__error">El usuario es requerido</span>
+        } @if (user.errors?.['email']) {
+        <span class="form__error">El correo no es valido</span>
+        } @if (user.errors?.['maxlength']) {
+        <span class="form__error"
+          >La correo no puede ser mayor a 20 caracteres</span
+        >
+        }
+      </div>
+      }
     </div>
+
     <div class="form__group">
       <label for="password" class="form__label">Contraseña:</label>
       <input
@@ -20,11 +45,26 @@
         formControlName="password"
         id="password"
         class="form__input"
+        placeholder="Ingresa tu contraseña"
       />
+      @if(password.invalid && (password.dirty || password.touched)) {
+      <div>
+        @if (password.errors?.['required']) {
+        <span class="form__error">La contraseña es requerido</span>
+        } @if (password.errors?.['maxlength']) {
+        <span class="form__error"
+          >La contraseña no puede ser mayor a 20 caracteres</span
+        >
+        }
+      </div>
+      }
     </div>
-    <button class="form__button" (click)="onLogin()">Validar datos</button>
+    <a href="/" class="form__link2">¿Olvidaste tu contraseña?</a>
+    <button class="form__button" (click)="onLogin()"></button>
     <a href="/" class="form__link">¿Olvidaste tu contraseña?</a>
   </form>
+
+  <app-carrousel [images]="carrouselImages"></app-carrousel>
 </main>
 
 <app-footer />

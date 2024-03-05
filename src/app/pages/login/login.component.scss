@@ -1,5 +1,51 @@
+.modal__container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+  opacity: 0;
+  visibility: hidden;
+  overflow: hidden;
+  transition: 0.5s linear;
+
+  &--active {
+    @extend .modal__container;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .modal {
+    width: 500px;
+    max-width: 90%;
+    height: 300px;
+    background-color: #fff;
+    border-radius: 50px;
+    box-shadow: 0 0 10px rgba(0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 1rem;
+    transition: 0.5s linear;
+    transform: translateY(50px);
+    transition-delay: 0.5s;
+
+    &--active {
+      @extend .modal;
+      transform: translateY(0);
+    }
+  }
+}
+
 .container {
   width: 100%;
+  height: fit-content;
   min-height: 100vh;
   background-image: url("../../../assets/fondo-login.png");
   background-size: cover;
@@ -10,6 +56,10 @@
   align-items: center;
   padding: 0 1.5rem;
   position: relative;
+
+  @media (min-width: 900px) {
+    column-gap: 5rem;
+  }
 
   &::before {
     content: "";
@@ -24,6 +74,14 @@
       var(--color-primary)
     );
     opacity: 0.9;
+
+    @media (min-width: 900px) {
+      background: linear-gradient(
+        to right,
+        var(--color-secondary),
+        transparent
+      );
+    }
   }
 
   .form {
@@ -32,7 +90,7 @@
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     width: 100%;
-    max-width: 600px;
+    max-width: 500px;
     display: flex;
     justify-content: center;
     align-content: center;
@@ -66,24 +124,43 @@
       width: 100%;
       padding: 1rem;
       border-radius: 30px;
-      border-style: none;
       color: #4d4d4d;
       font-weight: 500;
+      border: none;
 
       &:focus {
         outline: none;
       }
     }
 
+    &__error {
+      padding: 0 1rem;
+      color: var(--color-error);
+    }
+
     &__button {
       margin: 2rem 0;
-      padding: 0.8rem 1rem;
+      padding: 0.6rem 1rem;
       border-radius: 20px;
       background-color: var(--color-secondary);
       color: var(--color-primary);
       font-weight: 600;
       border-style: none;
       cursor: pointer;
+
+      &::before {
+        content: "Validar datos";
+      }
+
+      @media (min-width: 900px) {
+        width: fit-content;
+        margin: 0 auto;
+        padding: 0.6rem 2.5rem;
+
+        &::before {
+          content: "Validar";
+        }
+      }
 
       &:hover {
         background-color: #245580;
@@ -95,6 +172,22 @@
       color: var(--color-secondary);
       font-weight: 600;
       margin-bottom: 2rem;
+
+      @media (min-width: 900px) {
+        display: none;
+      }
+    }
+
+    &__link2 {
+      color: var(--color-secondary);
+      font-weight: 600;
+      margin-bottom: 2rem;
+      display: none;
+      text-align: start;
+
+      @media (min-width: 900px) {
+        display: block;
+      }
     }
   }
 }
