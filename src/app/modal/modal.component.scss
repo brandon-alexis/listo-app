@@ -35,6 +35,7 @@
     opacity: 0;
     transition: 0.3s linear;
     transition-delay: 0.1s;
+    padding: 1rem;
 
     &--active {
       @extend .modal;
@@ -60,7 +61,8 @@
       margin-bottom: 0.5rem;
     }
 
-    &__text {
+    &__text,
+    &__title {
       text-align: center;
       text-wrap: balance;
     }
