@@ -16,7 +16,7 @@ export class CarrouselComponent implements OnInit {
   selectedIndex: number = 0;
 
   ngOnInit(): void {
-    this.autoSlider();
+    //this.autoSlider()
   }
 
   autoSlider() {
