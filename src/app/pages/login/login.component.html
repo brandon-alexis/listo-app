@@ -12,14 +12,17 @@
     <h2 class="form__title">Inicio de sessión</h2>
 
     <div class="form__group">
-      <label for="user" class="form__label">Usuario:</label>
-      <input
-        type="email"
-        formControlName="user"
-        id="user"
-        class="form__input"
-        placeholder="Ingresa tu usuario"
-      />
+      <label for="user" class="form__label">
+        Usuario:
+        <input
+          type="email"
+          formControlName="user"
+          id="user"
+          class="form__input"
+          placeholder="Ingresa tu usuario"
+        />
+      </label>
+
       @if(user.invalid && (user.dirty || user.touched)) {
       <div>
         @if (user.errors?.['required']) {
@@ -36,14 +39,59 @@
     </div>
 
     <div class="form__group">
-      <label for="password" class="form__label">Contraseña:</label>
-      <input
-        type="password"
-        formControlName="password"
-        id="password"
-        class="form__input"
-        placeholder="Ingresa tu contraseña"
-      />
+      <label for="password" class="form__label">
+        Contraseña:
+        <input
+          [type]="isPasswordHide ? 'password' : 'text'"
+          formControlName="password"
+          id="password"
+          class="form__input"
+          placeholder="Ingresa tu contraseña"
+        />
+        <div class="form__icon" (click)="isPasswordHide = !isPasswordHide">
+          @if (isPasswordHide) {
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-eye-off"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="#296595"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M10.585 10.587a2 2 0 0 0 2.829 2.828" />
+            <path
+              d="M16.681 16.673a8.717 8.717 0 0 1 -4.681 1.327c-3.6 0 -6.6 -2 -9 -6c1.272 -2.12 2.712 -3.678 4.32 -4.674m2.86 -1.146a9.055 9.055 0 0 1 1.82 -.18c3.6 0 6.6 2 9 6c-.666 1.11 -1.379 2.067 -2.138 2.87"
+            />
+            <path d="M3 3l18 18" />
+          </svg>
+          } @else {
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-eye"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="#296595"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+            <path
+              d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6"
+            />
+          </svg>
+          }
+        </div>
+      </label>
+
       @if(password.invalid && (password.dirty || password.touched)) {
       <div>
         @if (password.errors?.['required']) {

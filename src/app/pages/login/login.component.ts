@@ -57,6 +57,7 @@ export class LoginComponent {
   password = this.loginForm.controls.password;
 
   isModalActive = false;
+  isPasswordHide = true;
 
   constructor(
     private http: HttpClient,
